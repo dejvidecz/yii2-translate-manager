@@ -1,8 +1,8 @@
 <?php
 
-namespace lajax\translatemanager\controllers\actions;
+namespace dlds\translatemanager\controllers\actions;
 
-use lajax\translatemanager\services\Optimizer;
+use dlds\translatemanager\services\Optimizer;
 
 /**
  * Class for optimizing language database.

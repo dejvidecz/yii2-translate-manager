@@ -1,10 +1,10 @@
 <?php
 
-namespace lajax\translatemanager\services;
+namespace dlds\translatemanager\services;
 
 use Yii;
 use yii\helpers\Console;
-use lajax\translatemanager\models\LanguageSource;
+use dlds\translatemanager\models\LanguageSource;
 
 /**
  * Scanner class for scanning project, detecting new language elements
@@ -34,10 +34,10 @@ class Scanner
      * @var array List of language element classes
      */
     public $scanners = [
-        '\lajax\translatemanager\services\scanners\ScannerPhpFunction',
-        '\lajax\translatemanager\services\scanners\ScannerPhpArray',
-        '\lajax\translatemanager\services\scanners\ScannerJavaScriptFunction',
-        '\lajax\translatemanager\services\scanners\ScannerDatabase',
+        '\dlds\translatemanager\services\scanners\ScannerPhpFunction',
+        '\dlds\translatemanager\services\scanners\ScannerPhpArray',
+        '\dlds\translatemanager\services\scanners\ScannerJavaScriptFunction',
+        '\dlds\translatemanager\services\scanners\ScannerDatabase',
     ];
 
     /**

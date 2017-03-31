@@ -1,9 +1,9 @@
 <?php
 
-namespace lajax\translatemanager\commands;
+namespace dlds\translatemanager\commands;
 
-use lajax\translatemanager\services\Optimizer;
-use lajax\translatemanager\services\Scanner;
+use dlds\translatemanager\services\Optimizer;
+use dlds\translatemanager\services\Scanner;
 use yii\console\Controller;
 use yii\helpers\Console;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace lajax\translatemanager\controllers\actions;
+namespace dlds\translatemanager\controllers\actions;
 
 /**
  * Deletes an existing Language model.

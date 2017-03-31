@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "dlds\\translatemanager\\": ""
+            "dlds\\translatemanager\\": "src"
         }
     },
     "scripts": {

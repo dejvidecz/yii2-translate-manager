@@ -1,11 +1,11 @@
 <?php
 
-namespace lajax\translatemanager\services\scanners;
+namespace dlds\translatemanager\services\scanners;
 
 use Yii;
 use yii\helpers\Console;
 use yii\base\InvalidConfigException;
-use lajax\translatemanager\services\Scanner;
+use dlds\translatemanager\services\Scanner;
 
 /**
  * Detecting existing language elements in database.

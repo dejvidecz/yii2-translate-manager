@@ -1,12 +1,12 @@
 <?php
 
-namespace lajax\translatemanager\controllers;
+namespace dlds\translatemanager\controllers;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\data\ArrayDataProvider;
 use yii\filters\AccessControl;
-use lajax\translatemanager\models\Language;
+use dlds\translatemanager\models\Language;
 
 /**
  * Controller for managing multilinguality.
@@ -18,7 +18,7 @@ use lajax\translatemanager\models\Language;
 class LanguageController extends Controller
 {
     /**
-     * @var \lajax\translatemanager\Module TranslateManager module
+     * @var \dlds\translatemanager\Module TranslateManager module
      */
     public $module;
 
@@ -57,49 +57,49 @@ class LanguageController extends Controller
                 'class' => 'yii\web\ErrorAction',
             ],
             'list' => [
-                'class' => 'lajax\translatemanager\controllers\actions\ListAction',
+                'class' => 'dlds\translatemanager\controllers\actions\ListAction',
             ],
             'change-status' => [
-                'class' => 'lajax\translatemanager\controllers\actions\ChangeStatusAction',
+                'class' => 'dlds\translatemanager\controllers\actions\ChangeStatusAction',
             ],
             'optimizer' => [
-                'class' => 'lajax\translatemanager\controllers\actions\OptimizerAction',
+                'class' => 'dlds\translatemanager\controllers\actions\OptimizerAction',
             ],
             'scan' => [
-                'class' => 'lajax\translatemanager\controllers\actions\ScanAction',
+                'class' => 'dlds\translatemanager\controllers\actions\ScanAction',
             ],
             'translate' => [
-                'class' => 'lajax\translatemanager\controllers\actions\TranslateAction',
+                'class' => 'dlds\translatemanager\controllers\actions\TranslateAction',
             ],
             'save' => [
-                'class' => 'lajax\translatemanager\controllers\actions\SaveAction',
+                'class' => 'dlds\translatemanager\controllers\actions\SaveAction',
             ],
             'dialog' => [
-                'class' => 'lajax\translatemanager\controllers\actions\DialogAction',
+                'class' => 'dlds\translatemanager\controllers\actions\DialogAction',
             ],
             'message' => [
-                'class' => 'lajax\translatemanager\controllers\actions\MessageAction',
+                'class' => 'dlds\translatemanager\controllers\actions\MessageAction',
             ],
             'view' => [
-                'class' => 'lajax\translatemanager\controllers\actions\ViewAction',
+                'class' => 'dlds\translatemanager\controllers\actions\ViewAction',
             ],
             'create' => [
-                'class' => 'lajax\translatemanager\controllers\actions\CreateAction',
+                'class' => 'dlds\translatemanager\controllers\actions\CreateAction',
             ],
             'update' => [
-                'class' => 'lajax\translatemanager\controllers\actions\UpdateAction',
+                'class' => 'dlds\translatemanager\controllers\actions\UpdateAction',
             ],
             'delete' => [
-                'class' => 'lajax\translatemanager\controllers\actions\DeleteAction',
+                'class' => 'dlds\translatemanager\controllers\actions\DeleteAction',
             ],
             'delete-source' => [
-                'class' => 'lajax\translatemanager\controllers\actions\DeleteSourceAction',
+                'class' => 'dlds\translatemanager\controllers\actions\DeleteSourceAction',
             ],
             'import' => [
-                'class' => 'lajax\translatemanager\controllers\actions\ImportAction',
+                'class' => 'dlds\translatemanager\controllers\actions\ImportAction',
             ],
             'export' => [
-                'class' => 'lajax\translatemanager\controllers\actions\ExportAction',
+                'class' => 'dlds\translatemanager\controllers\actions\ExportAction',
             ],
         ];
     }

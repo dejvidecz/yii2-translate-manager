@@ -1,6 +1,6 @@
 <?php
 
-namespace lajax\translatemanager;
+namespace dlds\translatemanager;
 
 use Yii;
 use yii\web\ForbiddenHttpException;

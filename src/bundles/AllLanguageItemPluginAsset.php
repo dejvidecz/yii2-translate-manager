@@ -1,6 +1,6 @@
 <?php
 
-namespace lajax\translatemanager\bundles;
+namespace dlds\translatemanager\bundles;
 
 /**
  * AllLanguageItem Plugin asset bundle
@@ -19,7 +19,7 @@ class AllLanguageItemPluginAsset extends LanguageItemPluginAsset
         $this->js = [];
         $this->sourcePath = \Yii::$app->getModule('translatemanager')->getLanguageItemsDirPath();
 
-        $langs = \lajax\translatemanager\models\Language::findAll(['status' => \lajax\translatemanager\models\Language::STATUS_ACTIVE]);
+        $langs = \dlds\translatemanager\models\Language::findAll(['status' => \dlds\translatemanager\models\Language::STATUS_ACTIVE]);
 
         foreach ($langs as $key => $lang) {
             if (file_exists(\Yii::getAlias($this->sourcePath . $lang->language_id . '.js'))) {

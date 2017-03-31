@@ -6,7 +6,7 @@
  * @since 1.0
  */
 
-namespace lajax\translatemanager\models;
+namespace dlds\translatemanager\models;
 
 use Yii;
 

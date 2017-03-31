@@ -6,7 +6,7 @@
  * @since 1.0
  */
 
-namespace lajax\translatemanager\models;
+namespace dlds\translatemanager\models;
 
 use Yii;
 
@@ -54,8 +54,8 @@ class LanguageTranslate extends \yii\db\ActiveRecord
         return [
             [['id', 'language'], 'required'],
             [['id'], 'integer'],
-            [['id'], 'exist', 'targetClass' => '\lajax\translatemanager\models\LanguageSource'],
-            [['language'], 'exist', 'targetClass' => '\lajax\translatemanager\models\Language', 'targetAttribute' => 'language_id'],
+            [['id'], 'exist', 'targetClass' => '\dlds\translatemanager\models\LanguageSource'],
+            [['language'], 'exist', 'targetClass' => '\dlds\translatemanager\models\Language', 'targetAttribute' => 'language_id'],
             [['translation'], 'string'],
             [['language'], 'string', 'max' => 5],
         ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace lajax\translatemanager\models;
+namespace dlds\translatemanager\models;
 
 use yii\base\Model;
 

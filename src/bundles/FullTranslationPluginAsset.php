@@ -1,6 +1,6 @@
 <?php
 
-namespace lajax\translatemanager\bundles;
+namespace dlds\translatemanager\bundles;
 
 /**
  * Translation Plugin asset bundle
@@ -16,6 +16,6 @@ class FullTranslationPluginAsset extends TranslationPluginAsset
      * @inheritdoc
      */
     public $depends = [
-        'lajax\translatemanager\bundles\AllLanguageItemPluginAsset',
+        'dlds\translatemanager\bundles\AllLanguageItemPluginAsset',
     ];
 }

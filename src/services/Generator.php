@@ -1,11 +1,11 @@
 <?php
 
-namespace lajax\translatemanager\services;
+namespace dlds\translatemanager\services;
 
 use Yii;
 use yii\helpers\Json;
 use yii\base\InvalidConfigException;
-use lajax\translatemanager\models\LanguageSource;
+use dlds\translatemanager\models\LanguageSource;
 
 /**
  * Generator class for producing JavaScript files containing language elements.
@@ -37,7 +37,7 @@ class Generator
     private $_template = 'var languageItems = languageItems || new Object();  languageItems[\'{language_id}\']=(function(){var _languages={language_items};return{getLanguageItems:function(){return _languages;}};})();';
 
     /**
-     * @param \lajax\translatemanager\Module $module
+     * @param \dlds\translatemanager\Module $module
      * @param string $language_id Language of the file to be generated.
      */
     public function __construct($module, $language_id)
@@ -96,7 +96,7 @@ class Generator
             $data[md5($language_item->message)] = $language_item->languageTranslate->translation;
         }
 
-        $langs = \lajax\translatemanager\models\Language::findAll(['status' => \lajax\translatemanager\models\Language::STATUS_ACTIVE]);
+        $langs = \dlds\translatemanager\models\Language::findAll(['status' => \dlds\translatemanager\models\Language::STATUS_ACTIVE]);
 
         foreach ($langs as $key => $lang) {
             $filename = $this->_basePath . '/' . $lang->language_id . '.js';

@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use lajax\translatemanager\bundles\TranslateManagerAsset;
+use dlds\translatemanager\bundles\TranslateManagerAsset;
 
 /*
  * @var \yii\web\View $this

@@ -1,14 +1,14 @@
 <?php
 
-namespace lajax\translatemanager\controllers\actions;
+namespace dlds\translatemanager\controllers\actions;
 
-use lajax\translatemanager\models\Language;
-use lajax\translatemanager\services\Generator;
+use dlds\translatemanager\models\Language;
+use dlds\translatemanager\services\Generator;
 use Yii;
 use yii\web\UploadedFile;
-use lajax\translatemanager\models\ImportForm;
-use lajax\translatemanager\bundles\LanguageAsset;
-use lajax\translatemanager\bundles\LanguagePluginAsset;
+use dlds\translatemanager\models\ImportForm;
+use dlds\translatemanager\bundles\LanguageAsset;
+use dlds\translatemanager\bundles\LanguagePluginAsset;
 
 /**
  * Class for exporting translations.

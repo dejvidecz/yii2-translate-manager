@@ -9,13 +9,13 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 use yii\grid\GridView;
 use yii\widgets\ActiveForm;
-use lajax\translatemanager\helpers\Language;
-use lajax\translatemanager\models\Language as Lang;
+use dlds\translatemanager\helpers\Language;
+use dlds\translatemanager\models\Language as Lang;
 
 /* @var $this \yii\web\View */
 /* @var $language_id string */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel lajax\translatemanager\models\searches\LanguageSourceSearch */
+/* @var $searchModel dlds\translatemanager\models\searches\LanguageSourceSearch */
 
 $this->title = Yii::t('language', 'Translation into {language_id}', ['language_id' => $language_id]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('language', 'Languages'), 'url' => ['list']];
