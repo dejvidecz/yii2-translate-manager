@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'code',
-            'language',
+            'code_lng',
             'code_country',
             'title',
             'title_ascii',
