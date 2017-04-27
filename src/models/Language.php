@@ -13,12 +13,12 @@ use Yii;
 /**
  * This is the model class for table "language".
  *
- * @property string $language_id
- * @property string $language
- * @property string $country
- * @property string $name
- * @property string $name_ascii
- * @property int $status
+ * @property string $code
+ * @property string $code_lng
+ * @property string $code_country
+ * @property string $title
+ * @property string $title_ascii
+ * @property int $status_translation
  * @property LanguageTranslate $languageTranslate
  * @property LanguageSource[] $languageSources
  */
@@ -74,15 +74,15 @@ class Language extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['language_id', 'language', 'country', 'name', 'name_ascii', 'status'], 'required'],
-            [['language_id'], 'string', 'max' => 5],
-            [['language_id'], 'unique'],
-            [['language_id'], 'match', 'pattern' => '/^([a-z]{2}[_-][A-Z]{2}|[a-z]{2})$/'],
-            [['language', 'country'], 'string', 'max' => 2],
-            [['language', 'country'], 'match', 'pattern' => '/^[a-z]{2}$/i'],
-            [['name', 'name_ascii'], 'string', 'max' => 32],
-            [['status'], 'integer'],
-            [['status'], 'in', 'range' => array_keys(self::$_CONDITIONS)],
+            [['code', 'code_lng', 'code_country', 'title', 'title_ascii', 'status_translation'], 'required'],
+            [['code'], 'string', 'max' => 5],
+            [['code'], 'unique'],
+            [['code'], 'match', 'pattern' => '/^([a-z]{2}[_-][A-Z]{2}|[a-z]{2})$/'],
+            [['code_lng', 'code_country'], 'string', 'max' => 2],
+            [['code_lng', 'code_country'], 'match', 'pattern' => '/^[a-z]{2}$/i'],
+            [['title', 'title_ascii'], 'string', 'max' => 32],
+            [['status_translation'], 'integer'],
+            [['status_translation'], 'in', 'range' => array_keys(self::$_CONDITIONS)],
         ];
     }
 
@@ -92,12 +92,12 @@ class Language extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'language_id' => Yii::t('model', 'Language ID'),
-            'language' => Yii::t('model', 'Language'),
-            'country' => Yii::t('model', 'Country'),
-            'name' => Yii::t('model', 'Name'),
-            'name_ascii' => Yii::t('model', 'Name Ascii'),
-            'status' => Yii::t('model', 'Status'),
+            'code' => Yii::t('model', 'Language ID'),
+            'code_lng' => Yii::t('model', 'Language'),
+            'code_country' => Yii::t('model', 'Country'),
+            'title' => Yii::t('model', 'Name'),
+            'title_ascii' => Yii::t('model', 'Name Ascii'),
+            'status_translation' => Yii::t('model', 'Status'),
         ];
     }
 
@@ -114,7 +114,7 @@ class Language extends \yii\db\ActiveRecord
     {
         $languageNames = [];
         foreach (self::getLanguages($active, true) as $language) {
-            $languageNames[$language['language_id']] = $language['name'];
+            $languageNames[$language['code']] = $language['title'];
         }
 
         return $languageNames;
@@ -133,7 +133,7 @@ class Language extends \yii\db\ActiveRecord
     public static function getLanguages($active = true, $asArray = false)
     {
         if ($active) {
-            return self::find()->where(['status' => static::STATUS_ACTIVE])->asArray($asArray)->all();
+            return self::find()->where(['status_translation' => static::STATUS_ACTIVE])->asArray($asArray)->all();
         } else {
             return self::find()->asArray($asArray)->all();
         }
@@ -146,7 +146,7 @@ class Language extends \yii\db\ActiveRecord
      */
     public function getStatusName()
     {
-        return Yii::t('array', self::$_CONDITIONS[$this->status]);
+        return Yii::t('array', self::$_CONDITIONS[$this->status_translation]);
     }
 
     /**
@@ -184,7 +184,7 @@ class Language extends \yii\db\ActiveRecord
             }
         }
 
-        return isset($statistics[$this->language_id]) ? $statistics[$this->language_id] : 0;
+        return isset($statistics[$this->code]) ? $statistics[$this->code] : 0;
     }
 
     /**
@@ -192,7 +192,7 @@ class Language extends \yii\db\ActiveRecord
      */
     public function getLanguageTranslate()
     {
-        return $this->hasOne(LanguageTranslate::className(), ['language' => 'language_id']);
+        return $this->hasOne(LanguageTranslate::className(), ['language' => 'code']);
     }
 
     /**
@@ -203,7 +203,7 @@ class Language extends \yii\db\ActiveRecord
     public function getIds()
     {
         return $this->hasMany(LanguageSource::className(), ['id' => 'id'])
-            ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
+            ->viaTable(LanguageTranslate::tableName(), ['language' => 'code']);
     }
 
     /**
@@ -212,6 +212,6 @@ class Language extends \yii\db\ActiveRecord
     public function getLanguageSources()
     {
         return $this->hasMany(LanguageSource::className(), ['id' => 'id'])
-            ->viaTable(LanguageTranslate::tableName(), ['language' => 'language_id']);
+            ->viaTable(LanguageTranslate::tableName(), ['language' => 'code']);
     }
 }

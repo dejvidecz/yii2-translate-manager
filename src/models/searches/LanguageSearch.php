@@ -25,8 +25,8 @@ class LanguageSearch extends Language
     public function rules()
     {
         return [
-            [['language_id', 'language', 'country', 'name', 'name_ascii'], 'safe'],
-            [['status'], 'integer'],
+            [['code', 'language', 'code_country', 'title', 'title_ascii'], 'safe'],
+            [['status_translation'], 'integer'],
         ];
     }
 
@@ -57,14 +57,14 @@ class LanguageSearch extends Language
         }
 
         $query->andFilterWhere([
-            'status' => $this->status,
+            'status_translation' => $this->status_translation,
         ]);
 
-        $query->andFilterWhere($this->createLikeExpression('language_id', $this->language_id))
+        $query->andFilterWhere($this->createLikeExpression('code', $this->code))
             ->andFilterWhere($this->createLikeExpression('language', $this->language))
-            ->andFilterWhere($this->createLikeExpression('country', $this->country))
-            ->andFilterWhere($this->createLikeExpression('name', $this->name))
-            ->andFilterWhere($this->createLikeExpression('name_ascii', $this->name_ascii));
+            ->andFilterWhere($this->createLikeExpression('code_country', $this->code_country))
+            ->andFilterWhere($this->createLikeExpression('title', $this->title))
+            ->andFilterWhere($this->createLikeExpression('title_ascii', $this->title_ascii));
 
         return $dataProvider;
     }

@@ -63,7 +63,7 @@ class LanguageSourceSearch extends LanguageSource
      */
     public function search($params)
     {
-        $translateLanguage = Yii::$app->request->get('language_id', Yii::$app->sourceLanguage);
+        $translateLanguage = Yii::$app->request->get('code', Yii::$app->sourceLanguage);
         $sourceLanguage = $this->_getSourceLanguage();
 
         $query = LanguageSource::find();

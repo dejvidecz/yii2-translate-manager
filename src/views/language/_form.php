@@ -19,17 +19,17 @@ use dlds\translatemanager\models\Language;
         'enableAjaxValidation' => true,
     ]); ?>
 
-    <?= $form->field($model, 'language_id')->textInput(['maxlength' => 5]) ?>
+    <?= $form->field($model, 'code')->textInput(['maxlength' => 5]) ?>
 
     <?= $form->field($model, 'language')->textInput(['maxlength' => 3]) ?>
 
-    <?= $form->field($model, 'country')->textInput(['maxlength' => 3]) ?>
+    <?= $form->field($model, 'code_country')->textInput(['maxlength' => 3]) ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => 32]) ?>
+    <?= $form->field($model, 'title')->textInput(['maxlength' => 32]) ?>
 
-    <?= $form->field($model, 'name_ascii')->textInput(['maxlength' => 32]) ?>
+    <?= $form->field($model, 'title_ascii')->textInput(['maxlength' => 32]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(Language::getStatusNames()) ?>
+    <?= $form->field($model, 'status_translation')->dropDownList(Language::getStatusNames()) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('language', 'Create') : Yii::t('language', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

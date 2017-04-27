@@ -103,21 +103,21 @@ class m141002_030233_translate_manager extends Migration
         }
 
         $this->createTable('{{%language}}', [
-            'language_id' => Schema::TYPE_STRING . '(5) NOT NULL',
+            'code' => Schema::TYPE_STRING . '(5) NOT NULL',
             'language' => Schema::TYPE_STRING . '(3) NOT NULL',
             'country' => Schema::TYPE_STRING . '(3) NOT NULL',
-            'name' => Schema::TYPE_STRING . '(32) NOT NULL',
-            'name_ascii' => Schema::TYPE_STRING . '(32) NOT NULL',
+            'title' => Schema::TYPE_STRING . '(32) NOT NULL',
+            'title_ascii' => Schema::TYPE_STRING . '(32) NOT NULL',
             'status' => Schema::TYPE_SMALLINT . ' NOT NULL',
-            'PRIMARY KEY (language_id)',
+            'PRIMARY KEY (code)',
         ], $tableOptions);
 
         $this->batchInsert('{{%language}}', [
-            'language_id',
+            'code',
             'language',
             'country',
-            'name',
-            'name_ascii',
+            'title',
+            'title_ascii',
             'status',
         ], $this->languages);
 
@@ -136,7 +136,7 @@ class m141002_030233_translate_manager extends Migration
 
         $this->createIndex('language_translate_idx_language', '{{%language_translate}}', 'language');
 
-        $this->addForeignKey('language_translate_ibfk_1', '{{%language_translate}}', ['language'], '{{%language}}', ['language_id'], 'CASCADE', 'CASCADE');
+        $this->addForeignKey('language_translate_ibfk_1', '{{%language_translate}}', ['language'], '{{%language}}', ['code'], 'CASCADE', 'CASCADE');
         $this->addForeignKey('language_translate_ibfk_2', '{{%language_translate}}', ['id'], '{{%language_source}}', ['id'], 'CASCADE', 'CASCADE');
     }
 

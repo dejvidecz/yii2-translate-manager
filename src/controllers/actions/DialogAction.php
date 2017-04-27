@@ -44,7 +44,7 @@ class DialogAction extends \yii\base\Action
      */
     private function _getTranslation($languageSource)
     {
-        $languageId = Yii::$app->request->post('language_id', '');
+        $languageId = Yii::$app->request->post('code', '');
         $languageTranslate = $languageSource
             ->getLanguageTranslates()
             ->andWhere(['language' => $languageId])

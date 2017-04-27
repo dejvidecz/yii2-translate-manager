@@ -43,8 +43,8 @@ class ExportForm extends Model
     public function getDefaultExportLanguages($minimumStatus)
     {
         return Language::find()
-            ->select('language_id')
-            ->where(['>=', 'status', $minimumStatus])
+            ->select('code')
+            ->where(['>=', 'status_translation', $minimumStatus])
             ->column();
     }
 

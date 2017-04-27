@@ -158,7 +158,7 @@ class LanguageSource extends \yii\db\ActiveRecord
      */
     public function getLanguages()
     {
-        return $this->hasMany(Language::className(), ['language_id' => 'language'])
+        return $this->hasMany(Language::className(), ['code' => 'language'])
             ->viaTable(LanguageTranslate::tableName(), ['id' => 'id']);
     }
 }

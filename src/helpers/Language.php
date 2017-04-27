@@ -5,6 +5,7 @@ namespace dlds\translatemanager\helpers;
 use Yii;
 use dlds\translatemanager\services\Scanner;
 use dlds\translatemanager\bundles\TranslationPluginAsset;
+use yii\BaseYii;
 
 /**
  * Language helper.
@@ -24,7 +25,7 @@ class Language
     /**
      * @var string parent span for front end translation.
      */
-    private static $_template = '<span class="language-item" data-category="{category}" data-hash="{hash}" data-language_id="{language_id}" data-params="{params}">{message}</span>';
+    private static $_template = '<span class="language-item" data-category="{category}" data-hash="{hash}" data-code="{code}" data-params="{params}">{message}</span>';
 
     /**
      * Registering JavaScripts for client side multilingual support.
@@ -47,14 +48,14 @@ class Language
     {
         if (self::isEnabledTranslate()) {
             return strtr(self::$_template, [
-                '{language_id}' => $language ? $language : Yii::$app->language,
+                '{code}' => $language ? $language : Yii::$app->language,
                 '{category}' => $category,
-                '{message}' => Yii::t($category, $message, $params, $language),
+                '{message}' => BaseYii::t($category, $message, $params, $language),
                 '{params}' => \yii\helpers\Html::encode(\yii\helpers\Json::encode($params)),
                 '{hash}' => md5($message),
             ]);
         } else {
-            return Yii::t($category, $message, $params, $language);
+            return BaseYii::t($category, $message, $params, $language);
         }
     }
 

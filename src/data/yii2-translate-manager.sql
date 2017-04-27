@@ -21,20 +21,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `language` (
-  `language_id` varchar(5) NOT NULL,
+  `code` varchar(5) NOT NULL,
   `language` varchar(3) NOT NULL,
   `country` varchar(3) NOT NULL,
-  `name` varchar(32) NOT NULL,
-  `name_ascii` varchar(32) NOT NULL,
+  `title` varchar(32) NOT NULL,
+  `title_ascii` varchar(32) NOT NULL,
   `status` tinyint(3) unsigned NOT NULL,
-  PRIMARY KEY (`language_id`)
+  PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `language`
 --
 
-INSERT INTO `language` (`language_id`, `language`, `country`, `name`, `name_ascii`, `status`) VALUES
+INSERT INTO `language` (`code`, `language`, `country`, `title`, `title_ascii`, `status`) VALUES
 ('af-ZA', 'af', 'za', 'Afrikaans', 'Afrikaans', 0),
 ('ar-AR', 'ar', 'ar', '‏العربية‏', 'Arabic', 1),
 ('az-AZ', 'az', 'az', 'Azərbaycan dili', 'Azerbaijani', 0),
@@ -150,4 +150,4 @@ CREATE TABLE IF NOT EXISTS `language_translate` (
 --
 ALTER TABLE `language_translate`
   ADD CONSTRAINT `language_translate_ibfk_1` FOREIGN KEY (`id`) REFERENCES `language_source` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `language_translate_ibfk_2` FOREIGN KEY (`language`) REFERENCES `language` (`language_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `language_translate_ibfk_2` FOREIGN KEY (`language`) REFERENCES `language` (`code`) ON DELETE CASCADE;

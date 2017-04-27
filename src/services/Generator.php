@@ -34,15 +34,15 @@ class Generator
     /**
      * @var string JavaScript code for serving all language elements.
      */
-    private $_template = 'var languageItems = languageItems || new Object();  languageItems[\'{language_id}\']=(function(){var _languages={language_items};return{getLanguageItems:function(){return _languages;}};})();';
+    private $_template = 'var languageItems = languageItems || new Object();  languageItems[\'{code}\']=(function(){var _languages={language_items};return{getLanguageItems:function(){return _languages;}};})();';
 
     /**
      * @param \dlds\translatemanager\Module $module
-     * @param string $language_id Language of the file to be generated.
+     * @param string $code Language of the file to be generated.
      */
-    public function __construct($module, $language_id)
+    public function __construct($module, $code)
     {
-        $this->_languageId = $language_id;
+        $this->_languageId = $code;
         $this->_basePath = Yii::getAlias($module->tmpDir);
         if (!is_dir($this->_basePath)) {
             throw new InvalidConfigException("The directory does not exist: {$this->_basePath}");
@@ -96,12 +96,12 @@ class Generator
             $data[md5($language_item->message)] = $language_item->languageTranslate->translation;
         }
 
-        $langs = \dlds\translatemanager\models\Language::findAll(['status' => \dlds\translatemanager\models\Language::STATUS_ACTIVE]);
+        $langs = \dlds\translatemanager\models\Language::findAll(['status_translation' => \dlds\translatemanager\models\Language::STATUS_ACTIVE]);
 
         foreach ($langs as $key => $lang) {
-            $filename = $this->_basePath . '/' . $lang->language_id . '.js';
+            $filename = $this->_basePath . '/' . $lang->code . '.js';
             $file_contents = str_replace('{language_items}', Json::encode($data), $this->_template);
-            $file_contents = str_replace('{language_id}', $lang->language_id, $file_contents);
+            $file_contents = str_replace('{code}', $lang->code, $file_contents);
             if (!$key) {//first file  should contain `language` var with current language Id
                 $file_contents .= 'var language = "' . $this->_languageId . '"';
             }
@@ -133,10 +133,10 @@ class Generator
     }
 
     /**
-     * @param string $language_id Stores the language id of the translation.
+     * @param string $code Stores the language id of the translation.
      */
-    public function setLanguageId($language_id)
+    public function setLanguageId($code)
     {
-        $this->_languageId = $language_id;
+        $this->_languageId = $code;
     }
 }

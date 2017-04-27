@@ -19,11 +19,11 @@ class AllLanguageItemPluginAsset extends LanguageItemPluginAsset
         $this->js = [];
         $this->sourcePath = \Yii::$app->getModule('translatemanager')->getLanguageItemsDirPath();
 
-        $langs = \dlds\translatemanager\models\Language::findAll(['status' => \dlds\translatemanager\models\Language::STATUS_ACTIVE]);
+        $langs = \dlds\translatemanager\models\Language::findAll(['status_translation' => \dlds\translatemanager\models\Language::STATUS_ACTIVE]);
 
         foreach ($langs as $key => $lang) {
-            if (file_exists(\Yii::getAlias($this->sourcePath . $lang->language_id . '.js'))) {
-                $this->js[] = $lang->language_id . '.js';
+            if (file_exists(\Yii::getAlias($this->sourcePath . $lang->code . '.js'))) {
+                $this->js[] = $lang->code . '.js';
             }
         }
     }

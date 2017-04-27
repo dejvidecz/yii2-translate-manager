@@ -31,7 +31,7 @@ class UpdateAction extends \yii\base\Action
 
             return ActiveForm::validate($model);
         } elseif ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->controller->redirect(['view', 'id' => $model->language_id]);
+            return $this->controller->redirect(['view', 'id' => $model->code]);
         } else {
             return $this->controller->render('update', [
                 'model' => $model,

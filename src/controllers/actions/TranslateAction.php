@@ -41,7 +41,7 @@ class TranslateAction extends \yii\base\Action
         return $this->controller->render('translate', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
-            'language_id' => Yii::$app->request->get('language_id', ''),
+            'code' => Yii::$app->request->get('code', ''),
         ]);
     }
 }

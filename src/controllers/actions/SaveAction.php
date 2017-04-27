@@ -26,7 +26,7 @@ class SaveAction extends \yii\base\Action
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         $id = Yii::$app->request->post('id', 0);
-        $languageId = Yii::$app->request->post('language_id', Yii::$app->language);
+        $languageId = Yii::$app->request->post('code', Yii::$app->language);
 
         $languageTranslate = LanguageTranslate::findOne(['id' => $id, 'language' => $languageId]) ?:
             new LanguageTranslate(['id' => $id, 'language' => $languageId]);

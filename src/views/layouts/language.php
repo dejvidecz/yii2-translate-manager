@@ -46,14 +46,15 @@ TranslateManagerAsset::register($this);
                 ['label' => Yii::t('language', 'Home'), 'url' => ['/']],
                 ['label' => Yii::t('language', 'Language'), 'items' => [
                     ['label' => Yii::t('language', 'List of languages'), 'url' => ['/translatemanager/language/list']],
-                    ['label' => Yii::t('language', 'Create'), 'url' => ['/translatemanager/language/create']],
+                    ['label' => Yii::t('language', 'Create'), 'url' => ['/translatemanager/language/create'], 'visible' => Yii::$app->getModule('translatemanager')->checkTopAccess()],
                 ]],
                 ['label' => Yii::t('language', 'Scan'), 'url' => ['/translatemanager/language/scan']],
                 ['label' => Yii::t('language', 'Optimize'), 'url' => ['/translatemanager/language/optimizer']],
+                ['label' => Yii::t('language', 'Migrate'), 'url' => ['/translatemanager/language/migrate'], 'visible' => Yii::$app->getModule('translatemanager')->checkTopAccess()],
                 ['label' => Yii::t('language', 'Im-/Export'), 'items' => [
                     ['label' => Yii::t('language', 'Import'), 'url' => ['/translatemanager/language/import']],
                     ['label' => Yii::t('language', 'Export'), 'url' => ['/translatemanager/language/export']],
-                ]],
+                ], 'visible' => Yii::$app->getModule('translatemanager')->checkTopAccess()],
             ];
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],

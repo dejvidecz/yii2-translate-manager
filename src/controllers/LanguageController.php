@@ -2,6 +2,7 @@
 
 namespace dlds\translatemanager\controllers;
 
+use dlds\translatemanager\Module;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\data\ArrayDataProvider;
@@ -35,11 +36,16 @@ class LanguageController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete', 'delete-source', 'import', 'export'],
+                'only' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete', 'delete-source', 'import', 'export', 'migrate'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view', 'create', 'update', 'delete', 'delete-source', 'import', 'export'],
+                        'actions' => ['list', 'change-status', 'optimizer', 'scan', 'translate', 'save', 'dialog', 'message', 'view'],
+                        'roles' => $this->module->roles,
+                    ],
+                    [
+                        'allow' => $this->module->checkTopAccess(),
+                        'actions' => ['create', 'update', 'delete', 'delete-source', 'import', 'export', 'migrate'],
                         'roles' => $this->module->roles,
                     ],
                 ],
@@ -100,6 +106,9 @@ class LanguageController extends Controller
             ],
             'export' => [
                 'class' => 'dlds\translatemanager\controllers\actions\ExportAction',
+            ],
+            'migrate' => [
+                'class' => 'dlds\translatemanager\controllers\actions\MigrateAction',
             ],
         ];
     }

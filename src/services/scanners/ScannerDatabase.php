@@ -17,13 +17,13 @@ use dlds\translatemanager\services\Scanner;
  *  [
  *      'connection' => 'db',
  *      'table' => '{{%language}}',
- *      'columns' => ['name', 'name_ascii'],
+ *      'columns' => ['title', 'title_ascii'],
  *      'category' => 'database-table-name',
  *  ],
  *  [
  *      'connection' => 'db',
  *      'table' => 'category',
- *      'columns' => ['name', 'description']
+ *      'columns' => ['title', 'description']
  *  ]
  * ]
  * ~~~

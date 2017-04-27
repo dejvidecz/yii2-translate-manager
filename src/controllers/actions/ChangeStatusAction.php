@@ -24,9 +24,9 @@ class ChangeStatusAction extends \yii\base\Action
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $language = Language::findOne(Yii::$app->request->post('language_id', ''));
+        $language = Language::findOne(Yii::$app->request->post('code', ''));
         if ($language !== null) {
-            $language->status = Yii::$app->request->post('status', Language::STATUS_BETA);
+            $language->status_translation = Yii::$app->request->post('status_translation', Language::STATUS_BETA);
             if ($language->validate()) {
                 $language->save();
             }

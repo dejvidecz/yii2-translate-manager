@@ -5,6 +5,8 @@ namespace dlds\translatemanager\widgets;
 use Yii;
 use yii\base\Widget;
 use dlds\translatemanager\Module;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * Widget that displays button for switching to translating mode.
@@ -80,7 +82,7 @@ class ToggleTranslate extends Widget
     /**
      * @var string The template of the translate mode switch button.
      */
-    public $template = '<a href="javascript:void(0);" id="toggle-translate" class="{position}" data-language="{language}" data-url="{url}"><i></i> {text}</a><div id="translate-manager-div"></div>';
+    public $template = '<a href="javascript:void(0);" id="toggle-translate" data-language="{language}" data-url="{url}"><i></i> {text}</a><div id="translate-manager-div"></div>';
 
     /**
      * example: http://www.yiiframework.com/doc-2.0/guide-structure-assets.html
@@ -101,18 +103,34 @@ class ToggleTranslate extends Widget
      */
     public function run()
     {
-        if (!Yii::$app->session->has(Module::SESSION_KEY_ENABLE_TRANSLATE)) {
-            return;
-        }
-
         $this->_registerAssets();
 
-        echo strtr($this->template, [
-            '{text}' => Yii::t('language', 'Toggle translate'),
-            '{position}' => $this->position,
-            '{language}' => Yii::$app->language,
-            '{url}' => Yii::$app->urlManager->createUrl(self::DIALOG_URL),
-        ]);
+        $isEnabled = Yii::$app->session->has(Module::SESSION_KEY_ENABLE_TRANSLATE);
+
+        $url = Url::current([Module::QP_SWITCH_TRANSLATE => !$isEnabled]);
+
+        $html = Html::beginTag('div', ['id' => 'toggle-translate-wrapper', 'class' => $this->position]);
+
+        $html .= Html::beginTag('div');
+
+        $html .= Html::a(\Yii::t('language', 'Translate Manager'), Url::to('/translatemanager/language/list/'), ['class' => 'title']);
+
+        $html .= Html::endTag('div');
+
+        $html .= Html::a(($isEnabled) ? \Yii::t('yii', 'ON') : \Yii::t('yii', 'OFF'), $url, ['class' => sprintf('switch %s', ($isEnabled) ? 'switch-enabled' : 'switch-disabled')]);
+
+        if ($isEnabled) {
+
+            $html .= strtr($this->template, [
+                '{text}' => Yii::t('language', 'SHOW'),
+                '{language}' => Yii::$app->language,
+                '{url}' => Yii::$app->urlManager->createUrl(self::DIALOG_URL),
+            ]);
+        }
+
+        $html .= Html::endTag('div');
+
+        return $html;
     }
 
     /**

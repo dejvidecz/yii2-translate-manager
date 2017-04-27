@@ -67,17 +67,17 @@ class ImportForm extends Model
         $data = $this->parseImportFile();
 
         /** @var Language[] $languages */
-        $languages = Language::find()->indexBy('language_id')->all();
+        $languages = Language::find()->indexBy('code')->all();
 
         foreach ($data['languages'] as $importedLanguage) {
-            if (isset($languages[$importedLanguage['language_id']])) {
-                $language = $languages[$importedLanguage['language_id']];
+            if (isset($languages[$importedLanguage['code']])) {
+                $language = $languages[$importedLanguage['code']];
             } else {
                 $language = new Language();
             }
 
             //cast integers
-            $importedLanguage['status'] = (int) $importedLanguage['status'];
+            $importedLanguage['status_translation'] = (int) $importedLanguage['status_translation'];
 
             $language->attributes = $importedLanguage;
             if (count($language->getDirtyAttributes())) {

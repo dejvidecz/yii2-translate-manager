@@ -55,7 +55,7 @@ class LanguageTranslate extends \yii\db\ActiveRecord
             [['id', 'language'], 'required'],
             [['id'], 'integer'],
             [['id'], 'exist', 'targetClass' => '\dlds\translatemanager\models\LanguageSource'],
-            [['language'], 'exist', 'targetClass' => '\dlds\translatemanager\models\Language', 'targetAttribute' => 'language_id'],
+            [['language'], 'exist', 'targetClass' => '\dlds\translatemanager\models\Language', 'targetAttribute' => 'code'],
             [['translation'], 'string'],
             [['language'], 'string', 'max' => 5],
         ];
@@ -74,10 +74,10 @@ class LanguageTranslate extends \yii\db\ActiveRecord
     }
 
     /**
-     * Returnes language object by id and language_id. If not found, creates a new one.
+     * Returnes language object by id and code. If not found, creates a new one.
      *
      * @param int $id LanguageSource id
-     * @param string $languageId Language language_id
+     * @param string $languageId Language code
      *
      * @return LanguageTranslate
      *
@@ -159,6 +159,6 @@ class LanguageTranslate extends \yii\db\ActiveRecord
      */
     public function getLanguage0()
     {
-        return $this->hasOne(Language::className(), ['language_id' => 'language']);
+        return $this->hasOne(Language::className(), ['code' => 'language']);
     }
 }

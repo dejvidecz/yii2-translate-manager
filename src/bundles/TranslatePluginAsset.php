@@ -16,7 +16,7 @@ class TranslatePluginAsset extends AssetBundle
     /**
      * @inheritdoc
      */
-    public $sourcePath = '@lajax/translatemanager/assets';
+    public $sourcePath = '@dlds/translatemanager/assets';
 
     /**
      * @inheritdoc

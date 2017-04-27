@@ -3,58 +3,79 @@
  *   Author     : Lajos Molnar <lajax.m@gmail.com>
  */
 
-#toggle-translate {
-    display:block;
-    position:fixed;
-    padding:10px 25px;
-    border:1px solid gray;
-    background:#FFF;
-    color:gray;
+#toggle-translate-wrapper {
+    display: block;
+    position: fixed;
+    padding: 10px 25px;
+    border: 2px solid gray;
+    background: #FFF;
+    color: gray;
+    text-align: center;
 }
 
-#toggle-translate.top-left {
-    top:0;
-    left:0;
+#toggle-translate-wrapper a {
+    padding: 5px 10px;
+    margin-left: 5px;
+    display: inline-block;
+    color: #0a6aa1;
+    text-decoration: none;
 }
 
-#toggle-translate.top-right {
-    top:0;
-    right:0;
+#toggle-translate-wrapper a.switch {
+    margin-left: 0;
+    padding-left: 0;
 }
 
-#toggle-translate.bottom-left {
-    bottom:0;
-    left:0;
+#toggle-translate-wrapper a.switch-enabled {
+    color: #00d95a;
+    font-weight: bold;
 }
 
-#toggle-translate.bottom-right {
-    bottom:0;
-    right:0;
+#toggle-translate-wrapper a.switch-disabled {
+    color: red;
+}
+
+#toggle-translate-wrapper.top-left {
+    top: 0;
+    left: 0;
+}
+
+#toggle-translate-wrapper.top-right {
+    top: 0;
+    right: 0;
+}
+
+#toggle-translate-wrapper.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+#toggle-translate-wrapper.bottom-right {
+    bottom: 0;
+    right: 0;
 }
 
 span.language-item.translatable {
-    border-bottom:1px solid red;
-    cursor:pointer;
+    border-bottom: 1px solid red;
+    cursor: pointer;
 }
 
 #translate-manager-dialog .translate-manager-message {
     background: #E0E0E0;
     border: 1px solid #B8B8B8;
     padding: 5px;
-    margin:0 0 10px;
+    margin: 0 0 10px;
 }
 
 #translate-manager-dialog .translate-manager-message textarea {
-    width:100%;
-    border:1px solid #FFCC66;
-    height:100px;
+    width: 100%;
+    border: 1px solid #FFCC66;
+    height: 100px;
 }
-
 
 #translate-manager-dialog textarea.ar-AR {
     direction: rtl;
 }
-
 
 #translate-manager-error {
     opacity: 1;
@@ -62,7 +83,7 @@ span.language-item.translatable {
     color: #a94442;
     border: 1px solid #ebccd1;
     border-radius: 4px;
-    margin:10px 0 20px;
+    margin: 10px 0 20px;
     padding: 15px;
     transition: opacity 0.15s linear 0s;
 }

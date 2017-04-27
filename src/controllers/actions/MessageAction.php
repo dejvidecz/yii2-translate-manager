@@ -24,7 +24,7 @@ class MessageAction extends \yii\base\Action
     {
         $languageTranslate = LanguageTranslate::findOne([
             'id' => Yii::$app->request->get('id', 0),
-            'language' => Yii::$app->request->get('language_id', ''),
+            'language' => Yii::$app->request->get('code', ''),
         ]);
 
         if ($languageTranslate) {
