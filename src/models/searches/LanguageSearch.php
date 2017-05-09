@@ -25,7 +25,7 @@ class LanguageSearch extends Language
     public function rules()
     {
         return [
-            [['code', 'language', 'code_country', 'title', 'title_ascii'], 'safe'],
+            [['code', 'code_lng', 'code_country', 'title', 'title_ascii'], 'safe'],
             [['status_translation'], 'integer'],
         ];
     }
@@ -61,7 +61,7 @@ class LanguageSearch extends Language
         ]);
 
         $query->andFilterWhere($this->createLikeExpression('code', $this->code))
-            ->andFilterWhere($this->createLikeExpression('language', $this->language))
+            ->andFilterWhere($this->createLikeExpression('code_lng', $this->code_lng))
             ->andFilterWhere($this->createLikeExpression('code_country', $this->code_country))
             ->andFilterWhere($this->createLikeExpression('title', $this->title))
             ->andFilterWhere($this->createLikeExpression('title_ascii', $this->title_ascii));
