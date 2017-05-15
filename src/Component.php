@@ -30,6 +30,10 @@ class Component extends \yii\base\Component
      */
     public function init()
     {
+        if (\Yii::$app->request->isConsoleRequest) {
+            return true;
+        }
+
         $switch = \Yii::$app->request->getQueryParam(Module::QP_SWITCH_TRANSLATE, null);
 
         if (null !== $switch) {
