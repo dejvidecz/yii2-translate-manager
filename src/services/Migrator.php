@@ -100,10 +100,6 @@ class Migrator
                 $translation = $i18n->translate('global', $source->message, [], $lngAlias);
             }
 
-            if ($translation == $source->message) {
-                $translation = sprintf('@%s', $translation);
-            }
-
             $this->_readyToMigrateTranslations[] = [
                 'id' => $source->id,
                 'language' => $language,

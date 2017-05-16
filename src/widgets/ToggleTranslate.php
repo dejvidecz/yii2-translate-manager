@@ -111,9 +111,9 @@ class ToggleTranslate extends Widget
 
         $html = Html::beginTag('div', ['id' => 'toggle-translate-wrapper', 'class' => $this->position]);
 
-        $html .= Html::beginTag('div');
+        $html .= Html::beginTag('div', ['class' => 'tm-title']);
 
-        $html .= Html::a(\Yii::t('language', 'Translate Manager'), Url::to('/translatemanager/language/list/'), ['class' => 'title']);
+        $html .= Html::a(\Yii::t('language', 'TM'), Url::to('/translatemanager/language/list/'), ['class' => 'title']);
 
         $html .= Html::endTag('div');
 

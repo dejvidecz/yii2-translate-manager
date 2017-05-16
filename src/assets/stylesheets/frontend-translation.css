@@ -6,19 +6,25 @@
 #toggle-translate-wrapper {
     display: block;
     position: fixed;
-    padding: 10px 25px;
-    border: 2px solid gray;
+    padding: 5px;
+    border: 1px solid #d7d7d7;
     background: #FFF;
-    color: gray;
+    color: #d7d7d7;
     text-align: center;
 }
 
+#toggle-translate-wrapper .tm-title {
+    float: left;
+    padding: 0 5px;
+    font-weight: bold;
+    color: orange;
+}
+
 #toggle-translate-wrapper a {
-    padding: 5px 10px;
-    margin-left: 5px;
     display: inline-block;
     color: #0a6aa1;
     text-decoration: none;
+    padding: 0 5px;
 }
 
 #toggle-translate-wrapper a.switch {
@@ -58,6 +64,10 @@
 span.language-item.translatable {
     border-bottom: 1px solid red;
     cursor: pointer;
+}
+
+#toggle-translate-wrapper #toggle-translate {
+    color: orange;
 }
 
 #translate-manager-dialog .translate-manager-message {
