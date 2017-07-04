@@ -113,7 +113,7 @@ class ToggleTranslate extends Widget
 
         $html .= Html::beginTag('div', ['class' => 'tm-title']);
 
-        $html .= Html::a(\Yii::t('language', 'TM'), Url::to('/translatemanager/language/list/'), ['class' => 'title']);
+        $html .= Html::a(\Yii::t('language', 'TM'), Url::to($this->_route()), ['class' => 'title', 'target' => '_blank']);
 
         $html .= Html::endTag('div');
 
@@ -131,6 +131,18 @@ class ToggleTranslate extends Widget
         $html .= Html::endTag('div');
 
         return $html;
+    }
+
+    private function _route()
+    {
+
+        $module = \Yii::$app->getModule('translatemanager');
+
+        if (!$module || !$module->defaultRoute) {
+            return '/translatemanager/language/list/';
+        }
+
+        return $module->defaultRoute;
     }
 
     /**
