@@ -2,9 +2,11 @@
 
 namespace dlds\translatemanager\services;
 
-use Yii;
-use yii\helpers\Console;
 use dlds\translatemanager\models\LanguageSource;
+use dlds\translatemanager\models\LanguageTranslate;
+use Yii;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Console;
 
 /**
  * Scanner class for scanning project, detecting new language elements
@@ -49,6 +51,11 @@ class Scanner
      * @var array for storing removabla LanguageSource ids.
      */
     private $_removableLanguageSourceIds = [];
+
+    /**
+     * @var array for storing removabla LanguageTranslate ids.
+     */
+    private $_removableLanguageTranslationsIds = [];
 
     /**
      * Scanning project for text not stored in database.
@@ -108,6 +115,16 @@ class Scanner
     }
 
     /**
+     * Returns removable LanguageSource ids.
+     *
+     * @return array
+     */
+    public function getRemovableLanguageTranslationsIds()
+    {
+        return $this->_removableLanguageTranslationsIds;
+    }
+
+    /**
      * Returns existing language elements.
      *
      * @return array associative array containing the language elements.
@@ -137,6 +154,10 @@ class Scanner
                 $this->_removableLanguageSourceIds[$languageSource->id] = $languageSource->id;
             }
         }
+
+        $languageTranslations = LanguageTranslate::find()->joinWith(['languageSource as ls'])->where(['ls.id' => null])->all();
+
+        $this->_removableLanguageTranslationsIds = ArrayHelper::map($languageTranslations, 'id', 'id');
     }
 
     /**

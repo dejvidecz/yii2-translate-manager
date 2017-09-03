@@ -2,6 +2,8 @@
 
 namespace dlds\translatemanager\services;
 
+use dlds\translatemanager\models\Language;
+use dlds\translatemanager\models\LanguageTranslate;
 use yii\helpers\Console;
 use dlds\translatemanager\models\LanguageSource;
 
@@ -48,14 +50,16 @@ class Optimizer
         $this->_scanner->stdout('Deleted language elements - BEGIN', Console::FG_RED);
 
         $languageSourceIds = $this->_scanner->getRemovableLanguageSourceIds();
+        $languageTranslationIds = $this->_scanner->getRemovableLanguageTranslationsIds();
 
         $this->_initLanguageElements($languageSourceIds);
 
         LanguageSource::deleteAll(['id' => $languageSourceIds]);
+        LanguageTranslate::deleteAll(['id' => $languageTranslationIds]);
 
         $this->_scanner->stdout('Deleted language elements - END', Console::FG_RED);
 
-        return count($languageSourceIds);
+        return count($languageSourceIds) + count($languageTranslationIds);
     }
 
     /**
