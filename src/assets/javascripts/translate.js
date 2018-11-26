@@ -1,4 +1,4 @@
-/** 
+/**
  * Created on : 2014.08.24., 5:26:26
  * Author     : Lajos Molnar <lajax.m@gmail.com>
  * since 1.0
@@ -18,7 +18,11 @@ var translate = (function () {
         var data = {
             id: $this.data('id'),
             code: $('#code').val(),
-            translation: $.trim($this.closest('tr').find('.translation').val())
+            translation: $.trim($this.closest('tr').find('.translation').val()),
+            type: $.trim($this.closest('tr').find('.type').val()),
+            app: $.trim($this.closest('tr').find('.app').val()),
+            v_start: $.trim($this.closest('tr').find('.vstart').val()),
+            v_end: $.trim($this.closest('tr').find('.vend').val())
         };
 
 
@@ -30,7 +34,7 @@ var translate = (function () {
      */
     function _copySourceToTranslation($this) {
 
-        if(typeof x_googleApiKey == 'undefined') // default bahavior - copy original text to translation field
+        if (typeof x_googleApiKey == 'undefined') // default bahavior - copy original text to translation field
         {
             if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
                 $this.closest('tr').find('.translation').val($.trim($this.val()));
@@ -41,7 +45,7 @@ var translate = (function () {
         else  // google translation is enabled - translate and copy translation ...
         {
             if ($.trim($this.closest('tr').find('.translation').val()).length === 0) {
-                helpers.googleTranslate($.trim($this.val()), $('#code').val(), function(result) {
+                helpers.googleTranslate($.trim($this.val()), $('#code').val(), function (result) {
                     $this.closest('tr').find('.translation').val(result);
                     _translateLanguage($this.closest('tr').find('button'));
                 });
@@ -65,7 +69,7 @@ var translate = (function () {
                     _translateLanguage($(this).closest('tr').find('button'));
                 }
             });
-            $('#translates').on('change', "#search-form select", function(){
+            $('#translates').on('change', "#search-form select", function () {
                 $(this).parents("form").submit();
             });
         }

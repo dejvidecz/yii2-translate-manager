@@ -54,6 +54,7 @@ class LanguageSource extends \yii\db\ActiveRecord
         return [
             [['message'], 'string'],
             [['category'], 'string', 'max' => 32],
+            [['v_start', 'v_end'], 'number'],
         ];
     }
 

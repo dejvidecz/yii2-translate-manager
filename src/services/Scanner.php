@@ -145,7 +145,7 @@ class Scanner
     {
         $this->_scanningProject();
 
-        $languageSources = LanguageSource::find()->all();
+        $languageSources = LanguageSource::find()->andWhere(['type' => 'scan'])->all();
 
         foreach ($languageSources as $languageSource) {
             if (isset($this->_languageElements[$languageSource->category][$languageSource->message])) {
@@ -155,7 +155,7 @@ class Scanner
             }
         }
 
-        $languageTranslations = LanguageTranslate::find()->joinWith(['languageSource as ls'])->where(['ls.id' => null])->all();
+        $languageTranslations = LanguageTranslate::find()->joinWith(['languageSource as ls'])->where(['ls.id' => NULL])->all();
 
         $this->_removableLanguageTranslationsIds = ArrayHelper::map($languageTranslations, 'id', 'id');
     }
@@ -179,7 +179,7 @@ class Scanner
      */
     public function addLanguageItem($category, $message)
     {
-        $this->_languageElements[$category][$message] = true;
+        $this->_languageElements[$category][$message] = TRUE;
 
         $coloredCategory = Console::ansiFormat($category, [Console::FG_YELLOW]);
         $coloredMessage = Console::ansiFormat($message, [Console::FG_YELLOW]);

@@ -8,11 +8,11 @@
 
 namespace dlds\translatemanager\models\searches;
 
+use dlds\translatemanager\models\LanguageSource;
+use dlds\translatemanager\models\LanguageTranslate;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use dlds\translatemanager\models\LanguageSource;
-use dlds\translatemanager\models\LanguageTranslate;
 
 /**
  * LanguageSourceSearch represents the model behind the search form about `common\models\LanguageSource`.
@@ -43,7 +43,8 @@ class LanguageSourceSearch extends LanguageSource
     {
         return [
             [['id'], 'integer'],
-            [['category', 'message', 'translation', 'source'], 'safe'],
+            [['v_start', 'v_end'], 'number'],
+            [['category', 'message', 'translation', 'source', 'type', 'app'], 'safe'],
         ];
     }
 
@@ -74,6 +75,10 @@ class LanguageSourceSearch extends LanguageSource
         $dataProvider->setSort([
             'attributes' => [
                 'id',
+                'type',
+                'app',
+                'v_start',
+                'v_end',
                 'category',
                 'message',
                 'translation' => [
@@ -100,6 +105,14 @@ class LanguageSourceSearch extends LanguageSource
             'category' => $this->category,
         ]);
 
+        if ($this->type) {
+            $query->andFilterWhere(['type' => $this->type]);
+        }
+
+        if ($this->app) {
+            $query->andFilterWhere(['app' => $this->app]);
+        }
+
         $query->andFilterWhere([
             'or',
             $this->createLikeExpression('message', $this->message),
@@ -109,7 +122,7 @@ class LanguageSourceSearch extends LanguageSource
         $query->joinWith(['languageTranslate' => function ($query) use ($translateLanguage) {
             $query->from(['lt' => LanguageTranslate::tableName()])->onCondition(['lt.language' => $translateLanguage]);
             if (!empty($this->searchEmptyCommand) && $this->translation == $this->searchEmptyCommand) {
-                $query->andWhere(['or', ['lt.translation' => null], ['lt.translation' => '']]);
+                $query->andWhere(['or', ['lt.translation' => NULL], ['lt.translation' => '']]);
             } else {
                 $query->andFilterWhere($this->createLikeExpression('lt.translation', $this->translation));
             }
